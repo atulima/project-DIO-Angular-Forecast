@@ -8,7 +8,8 @@
   
         <ul class="list-unstyled">
           <li *ngFor="let bookmark of bookmarks$ | async">
-            <a [routerLink]="['/pages/details']">
+            <a [routerLink]="['../details']"
+                [queryParams] = "{ lat: bookmark.city.coord.lat, lon: bookmark.city.coord.lon }">
               {{ bookmark.name }}
             </a>
             <button class="btn btn-outline-dark btn-sm"

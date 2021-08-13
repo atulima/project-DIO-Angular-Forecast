@@ -34,6 +34,6 @@ const reducer = createReducer(
     })),
 );
 
-export function detalsReducer(state: DetailsState | undefined, action: Action): DetailsState{
+export function detailsReducer(state: DetailsState | undefined, action: Action): DetailsState{
     return reducer(state, action);
 }

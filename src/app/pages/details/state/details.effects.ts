@@ -23,7 +23,7 @@ export class DetailsEffects{
                 ])
                 ),
                 catchError((err, caught$) => {
-                    this.store.dispatch(fromDetailsActions.loadWeatherDetailsFailed()),
+                    this.store.dispatch(fromDetailsActions.loadWeatherDetailsFailed());
                     return caught$;
                 }),
                 map(([current, daily]) => {
