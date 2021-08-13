@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { TypeaheadModule } from "ngx-bootstrap/typeahead";
+import { BookmarksEffects } from './state/bookmarks.effects';
 
 
 
@@ -18,6 +19,7 @@ import { TypeaheadModule } from "ngx-bootstrap/typeahead";
     RouterModule,
     ReactiveFormsModule,
     StoreModule.forFeature('bookmarks', bookmarkReducer),
+    EffectsModule.forFeature([BookmarksEffects]),
     ComponentsModule
   ], 
 })

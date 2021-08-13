@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { Bookmark } from 'src/app/shared/models/bookmark.models';
@@ -14,7 +14,7 @@ import { CityTypeaheadItem } from 'src/app/shared/models/city-typeahead-item.mod
   templateUrl: './bookmarks.page.html',
   styleUrls: ['./bookmarks.page.scss']
 })
-export class BookmarksPage implements OnInit {
+export class BookmarksPage implements OnInit, OnDestroy {
 
   bookmarks$: Observable<Bookmark[]>;
   searchTypeaheadControl = new FormControl(undefined);
@@ -29,6 +29,11 @@ export class BookmarksPage implements OnInit {
       .pipe(takeUntil(this.componentDestroyed$))
       .subscribe((value: CityTypeaheadItem) =>
         this.store.dispatch(fromBookmarksActions.toggleBookmarById({ id: value.geonameid})))
+  }
+
+  ngOnDestroy(){
+    this.componentDestroyed$.next();
+    this.componentDestroyed$.unsubscribe();
   }
 
   removeBookmark(id: number){
